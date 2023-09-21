@@ -4,18 +4,19 @@ const Wrapper = styled.div`
   header {
     text-align: center;
     margin-bottom: 3rem;
-    .btn {
-      margin-bottom: 1rem;
-    }
+  }
+  .btn {
+    margin-bottom: 1rem;
   }
   .img {
     border-radius: var(--borderRadius);
   }
+
   .drink-info {
     padding-top: 2rem;
   }
   .drink p {
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
     line-height: 2;
     margin-bottom: 1rem;
@@ -32,6 +33,7 @@ const Wrapper = styled.div`
     display: inline-block;
     margin-right: 0.5rem;
   }
+
   @media (min-width: 992px) {
     .drink {
       display: grid;
@@ -39,8 +41,9 @@ const Wrapper = styled.div`
       gap: 3rem;
       align-items: center;
     }
+
     .drink-info {
-      padding-top: 0;
+      padding-top: 0rem;
     }
   }
 `;

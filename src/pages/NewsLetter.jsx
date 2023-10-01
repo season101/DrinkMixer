@@ -1,18 +1,28 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { Form, redirect } from 'react-router-dom';
+import { Form, redirect, useNavigation } from 'react-router-dom';
 import axios from 'axios';
 
 const newsletterUrl = 'https://www.course-api.com/cocktails-newsletter';
+
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const response = await axios.post(newsletterUrl, data);
-  toast.success(response.data.msg);
-  return redirect('/');
+
+  try {
+    const response = await axios.post(newsletterUrl, data);
+    toast.success(response.data.msg);
+    return redirect('/');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+    
+  }
 };
 
 const NewsLetter = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
   return (
     <Form className="form" method="POST">
       <h4 style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -21,7 +31,7 @@ const NewsLetter = () => {
       {/* name */}
       <div className="form-row">
         <label htmlFor="name" className="form-label">
-          name
+          First Name
         </label>
         <input
           type="text"
@@ -34,7 +44,7 @@ const NewsLetter = () => {
       {/* lastname */}
       <div className="form-row">
         <label htmlFor="lastName" className="form-label">
-          lastName
+          Last Name
         </label>
         <input
           type="text"
@@ -53,6 +63,7 @@ const NewsLetter = () => {
           type="email"
           name="email"
           id="email"
+          defaultValue={'test@test.com'}
           className="form-input"
           required
         />
@@ -61,8 +72,9 @@ const NewsLetter = () => {
         type="submit"
         className="btn btn-block"
         style={{ marginTop: '0.5rem' }}
+        disabled={isSubmitting}
       >
-        submit
+        {isSubmitting?'submitting': 'submit'}
       </button>
     </Form>
   );

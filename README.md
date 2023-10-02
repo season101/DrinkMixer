@@ -1,3 +1,4 @@
+[![Build and Deploy React Application](https://github.com/season101/DrinkMixer/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/season101/DrinkMixer/actions/workflows/build-and-deploy.yml)
 ## Figma URL
 
 [MixMaster Design](https://www.figma.com/community/file/1255860657910062828)

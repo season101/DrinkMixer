@@ -25,9 +25,8 @@ export const loader = (queryClient) => async ({ params }) => {
 
 const Cocktail = () => {
   const { id } = useLoaderData();
-  
   const { data } = useQuery(singleCocktailQuery(id));
-  
+
   if (!data.drinks) return <Navigate to="/" />;
 
   const singleDrink = data.drinks[0];
